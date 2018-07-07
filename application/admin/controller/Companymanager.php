@@ -107,6 +107,7 @@ class Companymanager extends Backend
     }
 
     public function info(){
+	echo 1111;
         $c_id = $this->request->param("ids/s");
         $company_info = QCompany::getCompanyInfo($c_id);
 
