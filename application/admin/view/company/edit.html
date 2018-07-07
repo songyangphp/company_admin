@@ -1,0 +1,69 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="c-company_name" class="control-label col-xs-12 col-sm-2">企业名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-company_name5b305725ecf688294" data-rule="required" class="form-control" name="row[company_name]" type="text" value="{$row.company_name}" disabled="disabled">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-code" class="control-label col-xs-12 col-sm-2">统一社会信用代码:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-code5b305725ee6d86170" data-rule="required" class="form-control" name="row[code]" type="text" value="{$row.code}" disabled="disabled">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-f_name" class="control-label col-xs-12 col-sm-2">法人姓名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-code5b305725ee6d86170" data-rule="required" class="form-control" name="row[f_name]" type="text" value="{$row.f_name}" disabled="disabled">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-b_id" class="control-label col-xs-12 col-sm-2">所属楼宇:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-b_id5b305725ee6d86885" data-rule="required" class="form-control" name="row[b_id]" type="text" value="{$row.b_id}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-floor" class="control-label col-xs-12 col-sm-2">所属楼层:</label>
+        <div class="col-xs-12 col-sm-8">
+            <?php  $floorlist=  json_decode('{"1":"1\u5c42","2":"2\u5c42"}',true);   ?>            
+            <select  id="c-floor" data-rule="required" class="form-control selectpicker" name="row[floor]">
+                {foreach name="$floorlist" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.floor"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-level_id" class="control-label col-xs-12 col-sm-2">企业等级:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select  id="c-level_id" data-rule="required" class="form-control selectpicker" name="row[level_id]">
+                {foreach name="level_list" item="vo"}
+                    <option value="{$vo.id}" {in name="$vo.id" value="$row.level_id"}selected{/in}>{$vo.name}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-bs_id" class="control-label col-xs-12 col-sm-2">类型标签:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="c-bs_id" data-rule="required" class="form-control selectpicker" name="row[bs_id]">
+                {foreach name="bs" item="vo"}
+                    <option value="{$vo.id}" {in name="$vo.id" value="$row.bs_id"}selected{/in}>{$vo.name}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

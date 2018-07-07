@@ -1,0 +1,17 @@
+Hellow World
+
+<table>
+    <thead>
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+        </tr>
+    </thead>
+
+    {foreach name="list" item="vo"}
+    <tr>
+        <td>{$vo.name}</td>
+        <td>{$vo.sex}</td>
+    </tr>
+    {/foreach}
+</table>

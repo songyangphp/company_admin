@@ -1,0 +1,96 @@
+<div class="row ">
+
+    <div class="col-xs-3 container-fluid">
+        <div class="navbar-static-top" style="position: fixed;width: 22%">
+            <div class="box  box-warning ">
+                <div class="box-header">
+                    <h3 class="box-title">资料导航</h3>
+                </div>
+                <div class="box-body">
+
+                    <ul class="nav nav-pills nav-stacked " id="ws-tab" style="font-size: larger">
+                        <li class="active"><a href="#">所有资料</a></li>
+                        <li><a href="#">基本资料<span class="badge bg-blue pull-right"></span></a></li>
+                        <li><a href="#">案件材料<span class="badge bg-blue pull-right"></span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box  box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">操作</h3>
+                </div>
+                <div class="box-body">
+
+                    <div class="col-xs-lg">
+
+                        {$btnList}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="box  box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">时间信息</h3>
+                </div>
+                <div class="box-body">
+
+                    <div class="col-xs-lg">
+                        <ul class="nav nav-pills nav-stacked " id="" style="font-size: larger">
+                            {foreach name="time_info" item="val"}
+
+                            <li ><a href="">{$val}</a></li>
+
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-xs-9" id="ws-body" style="font-size: larger">
+
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">基本资料</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>申请人</b> <a class="pull-right">{$jibenziliao['sqr']}</a>
+                    </li>
+                    {if condition="$jibenziliao.time.time30 > 0" }
+                    <li class="list-group-item">
+                        <b>立案时间</b> <a class="pull-right">{$jibenziliao['time']['time30_str']}</a>
+                    </li>
+                    {/if}
+
+                    <!--<li class="list-group-item">-->
+                    <!--<b>当前状态</b> <a class="pull-right">{$jibenziliao['status']}</a>-->
+                    <!--</li>-->
+                    <!--<li class="list-group-item">-->
+                    <!--<b>争议金额</b> <a class="pull-right">{$jibenziliao['dispute_money']}元</a>-->
+                    <!--</li>-->
+                    <!--<li class="list-group-item">
+                        <b>费用</b> <a class="pull-right">{$jibenziliao['money']}元</a>
+                    </li>-->
+                    {if condition="$jibenziliao.status_int == 0" }
+                    <li class="list-group-item">
+                        <b>拒绝原因</b> <a class="pull-right">{$jibenziliao['refuse']}</a>
+                    </li>
+                    {/if}
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        {$filehtml}
+    </div>
+</div>

@@ -1,0 +1,214 @@
+<head>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={$key}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="c-building_name" class="control-label col-xs-12 col-sm-2">楼宇名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="text_" data-rule="required" class="form-control" name="row[building_name]" type="text" value="{$row.building_name}" onblur="searchByStationName()">
+        </div>
+    </div>
+
+    <!--<div class="form-group">
+        <label for="c-building_name" class="control-label col-xs-12 col-sm-2"  >楼宇名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="result_" data-rule="required" class="form-control" name="row[building_name]" type="text" value="{$row.building_name}">
+        </div>
+    </div>-->
+    <div class="form-group">
+        <label for="c-floor" class="control-label col-xs-12 col-sm-2">楼层数:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-floor5b32efe9826b88247" data-rule="required" class="form-control" name="row[floor]" type="text" value="{$row.floor}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="c-province_id" class="control-label col-xs-12 col-sm-2">选择省:</label>
+        <div class="col-xs-12 col-sm-8">
+        <select name="row[province_id]" id="typeId" data-rules="required" class="form-control selectpicker">
+            <option value="0">请选择</option>
+            {foreach name="newsType" item="vo"}
+                <option value="{$vo.id}">{$vo.name}</option>
+            {/foreach}
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="c-city_id" class="control-label col-xs-12 col-sm-2">选择市:</label>
+        <div class="col-xs-12 col-sm-8">
+        <select name="row[city_id]" id="parentNews" data-rules="required" class="form-control selectpicker">
+            <option value="0">请选择</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="c-area_id" class="control-label col-xs-12 col-sm-2">选择县、区:</label>
+        <div class="col-xs-12 col-sm-8">
+        <select name="row[area_id]" id="grandparentNews" data-rules="required" class="form-control selectpicker">
+            <option value="52">请选择</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="c-address" class="control-label col-xs-12 col-sm-2">详细地址:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-address" data-rule="required" class="form-control " rows="5" name="row[address]" cols="50">{$row.address}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-lon" class="control-label col-xs-12 col-sm-2">经度:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="lon" data-rule="required" class="form-control" name="row[lon]" type="text" value="{$row.lon}" readonly >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-lat" class="control-label col-xs-12 col-sm-2">纬度:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="lat" data-rule="required" class="form-control" name="row[lat]" type="text" value="{$row.lat}" readonly >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-is_park" class="control-label col-xs-12 col-sm-2">是否属于园区:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                <label><input name="row[is_park]" type="radio" value="0" onclick="showpark(2)" checked/>否</label>
+                <label><input name="row[is_park]" type="radio" value="1" onclick="showpark(1)"/>是</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group" id="ispark" style="display: none">
+        <label for="c-park_id" class="control-label col-xs-12 col-sm-2">选择园区:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select  id="c-park_id" data-rule="required" class="form-control selectpicker" name="row[park_id]">
+                <option value="0">请选择</option>
+                {foreach name="park" item="vo"}
+                    <option value="{$vo.id}">{$vo.name}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-describe" class="control-label col-xs-12 col-sm-2">描述:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-describe" data-rule="required" class="form-control " rows="5" name="row[describe]" cols="50">{$row.describe}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+<div style="width:730px;margin:auto;">
+    <!--<div class="inputdiv">要查询的地址：<input id="text_" type="text" value="宁波天一广场" style="margin-right:100px;"/></div>
+    <div class="inputdiv">查询结果(经纬度)：<input id="result_" type="text" /></div>-->
+    <!--<input type="button" value="查询" onclick="searchByStationName();"/>-->
+    <div id="container"></div>
+</div>
+
+<script>
+    var map = new BMap.Map("container");
+    map.centerAndZoom("宁波", 12);
+    map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+
+    map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+    map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+    map.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
+
+    var localSearch = new BMap.LocalSearch(map);
+    localSearch.enableAutoViewport(); //允许自动调节窗体大小
+    function searchByStationName() {
+        map.clearOverlays();//清空原来的标注
+        var keyword = document.getElementById("text_").value;
+
+        localSearch.setSearchCompleteCallback(function (searchResult) {
+            console.log(searchResult);
+            var poi = searchResult.getPoi(0);
+
+            document.getElementById("lon").value = poi.point.lng;
+            document.getElementById("lat").value = poi.point.lat;
+            map.centerAndZoom(poi.point, 13);
+            var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地方对应的经纬度
+            map.addOverlay(marker);
+            var content = document.getElementById("text_").value + "<br/><br/>经度：" + poi.point.lng + "<br/>纬度：" + poi.point.lat;
+            var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + content + "</p>");
+            marker.addEventListener("click", function () { this.openInfoWindow(infoWindow); });
+            // marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        });
+        localSearch.search(keyword);
+    }
+
+    function showpark(isshow){
+        if(isshow==1){
+            document.getElementById("ispark").style.display= "block"
+        }else{
+            document.getElementById("ispark").style.display= "none"
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $(':checkbox').click(function() {
+                $("#" + $(this).attr('pid')).attr('checked', true);
+                $("#" + $(this).attr('gpid')).attr('checked', true);
+                var id = $(this).attr('id');
+
+                var inputs = $('input[pid=' + id + ']');
+                $(this).attr('checked') ? inputs.attr('checked', true) : inputs.attr('checked', false);
+
+                var ginputs = $('input[gpid=' + id + ']');
+                $(this).attr('checked') ? ginputs.attr('checked', true) : ginputs.attr('checked', false);
+            }
+        );
+
+    <?php if(empty($news)):?>
+
+        $(document).ready(function() {
+            //alert($(this).val());
+            $.post('__URL__/ajaxGetCity', {
+                typeId: 2
+            }, function(data) {
+                $('#parentNews').empty();
+                $('#parentNews').append(data);
+            });
+        });
+
+    <?php endif;?>
+
+        $('#typeId').change(function() {
+            //alert($(this).val());
+            $.post('__URL__/ajaxGetCity', {
+                typeId: $(this).val()
+            }, function(data) {
+                $('#parentNews').empty();
+                $('#parentNews').append(data);
+            });
+        });
+
+        $('#parentNews').change(function() {
+            //alert($(this).val());
+            $.post('__URL__/ajaxGetqu', {
+                typeId: $(this).val()
+            }, function(data) {
+
+                $('#grandparentNews').empty();
+                $('#grandparentNews').append(data);
+            });
+        });
+    });
+</script>

@@ -1,0 +1,28 @@
+<div class="row " style="margin:auto; top: 0;left: 0;right: 0;bottom: 0;">
+    <div class="col-xs-9" id="ws-body" style="font-size: larger;width: 100%">
+        {foreach name="list" item="vo"}
+        {if($vo.link_status==0)}
+        <div class="box box-success">
+        {else /}
+        <div class="box box-danger">
+        {/if}
+
+            <div class="box-header" style="text-align: center">
+                <h3 class="box-title" style="float: left"><b>{$vo.name}</b></h3>
+            </div>
+
+            <div class="box-body table-responsive">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>持股比例</b> <a class="pull-right">{$vo.sharehold}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>认缴金额</b> <a class="pull-right">{$vo.amount}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {/foreach}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+
+<style>
+    .box_p{
+        float: right;
+        margin-left: 15px;
+    }
+</style>
+    <div class="col-xs-9" id="ws-body" style="font-size: larger;width: 100%">
+        <div class="box box-success">
+            <div class="box-header" style="text-align: center">
+                <h3 class="box-title" style="float: left"><b>{$info.company_name}</b> 信息资料 </h3>
+                <!--<p class="box_p"><a class="btn btn-xs btn-danger btn-dialog" title="{$info.company_name}企业年报" href="{:url('Wszxdata/annualreport',array('name'=>$info['company_name']))}">企业年报</a></p>
+                <p class="box_p"><a class="btn btn-xs btn-default btn-dialog" title="{$info.company_name}股权结构" href="{:url('Wszxdata/gqjg',array('name'=>$info['company_name']))}">股权结构</a></p>
+                <p class="box_p"><a class="btn btn-xs btn-primary btn-dialog" title="{$info.company_name}变更记录" href="{:url('Wszxdata/change',array('name'=>$info['company_name']))}">变更记录</a></p>
+                <p class="box_p"><a class="btn btn-xs btn-success btn-dialog" title="{$info.company_name}投资关系" href="{:url('Wszxdata/invest',array('name'=>$info['company_name']))}">投资关系</a></p>
+                <p class="box_p"><a class="btn btn-xs btn-info btn-dialog" title="{$info.company_name}关系族谱" href="{:url('Wszxdata/family',array('name'=>$info['company_name']))}">关系族谱</a></p>
+                <p class="box_p"><a class="btn btn-xs btn-warning btn-dialog" title="{$info.company_name}企业链图" href="{:url('Wszxdata/nexus',array('name'=>$info['company_name']))}">企业链图</a></p>-->
+
+                {foreach name="btn" item="vo"}
+                <p class="box_p"><a class="{$vo.class}" title="{$info.company_name}{$vo.title}" href="{$vo.url}">{$vo.title}{$vo.tip}</a></p>
+                {/foreach}
+            </div>
+
+            <div class="box-body table-responsive">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>企业名称</b> <a class="pull-right">{$info.company_name}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>社会统一信用代码</b> <a class="pull-right">{$info.code}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>登记类别</b> <a class="pull-right">{$info.dj_type}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>企业类型</b> <a class="pull-right">{$info.company_type}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>注册号</b> <a class="pull-right">{$info.register_num}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>成立日期</b> <a class="pull-right">{$info.found_time}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>法人姓名</b> <a class="pull-right">{$info.f_name}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>法人身份证号</b> <a class="pull-right">{$info.f_idcards}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>联络员姓名</b> <a class="pull-right">{$info.lly_name}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>联络员联系方式</b> <a class="pull-right">{$info.lly_phone}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>注册资本（万元）</b> <a class="pull-right">{$info.zc_money}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>实收资本（万元）</b> <a class="pull-right">{$info.ss_money}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>企业联系电话</b> <a class="pull-right">{$info.company_phone}</a>
+                    </li>
+                    <li class="list-group-item" style="display:inline-block">
+                        <b>经营范围</b> <a class="pull-right" style="">{$info.operation}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>经营期限</b> <a class="pull-right">{$info.jy_time}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>登记机关</b> <a class="pull-right">{$info.dj_jigou}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>邮政编号</b> <a class="pull-right">{$info.postalcode}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>住所</b> <a class="pull-right">{$info.address}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>监管部门</b> <a class="pull-right">{$info.jg_jigou}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>状态</b> <a class="pull-right">{$info.status}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>核准日期</b> <a class="pull-right">{$info.hz_time}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
