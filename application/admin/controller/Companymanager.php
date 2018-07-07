@@ -126,6 +126,7 @@ class Companymanager extends Backend
         }
 
         foreach ($title as $k => $v){
+            echo 111;
             if(!in_array($v['title'],array_column($this->btnconfig,"title"))){
                 unset($title[$k]);
                 continue;
